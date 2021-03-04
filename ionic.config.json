@@ -1,0 +1,8 @@
+{
+  "name": "test-bandyer",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,113 @@
+{
+  "_from": "@bandyer/cordova-plugin-bandyer",
+  "_id": "@bandyer/cordova-plugin-bandyer@0.6.5",
+  "_inBundle": false,
+  "_integrity": "sha512-jYJww1t987sENH7KtDj6yj/9PlIuqAow/ELfOt7Vr3PKa60Ke10Lt14grEBcmhirjxjvYlxlCm69QvDKJ0q+SA==",
+  "_location": "/@bandyer/cordova-plugin-bandyer",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "@bandyer/cordova-plugin-bandyer",
+    "name": "@bandyer/cordova-plugin-bandyer",
+    "escapedName": "@bandyer%2fcordova-plugin-bandyer",
+    "scope": "@bandyer",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@bandyer/cordova-plugin-bandyer/-/cordova-plugin-bandyer-0.6.5.tgz",
+  "_shasum": "db516aff447c91d7a436dd5035c0b8374b60bbca",
+  "_spec": "@bandyer/cordova-plugin-bandyer",
+  "_where": "/Users/quid/test-bandyer",
+  "author": {
+    "name": "Bandyer"
+  },
+  "bugs": {
+    "url": "https://github.com/Bandyer/Bandyer-Cordova-Plugin/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "@bandyer/cordova-plugin-bandyer",
+    "platforms": [
+      "ios",
+      "android"
+    ]
+  },
+  "deprecated": false,
+  "description": "Bandyer as simple as making a phone call",
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/plugin-transform-spread": "^7.2.2",
+    "@babel/preset-env": "^7.5.5",
+    "@babel/preset-typescript": "^7.9.0",
+    "@babel/runtime-corejs3": "^7.5.5",
+    "@bandyer/ts-transformer-type-structure": "^1.0.0",
+    "@types/cordova": "0.0.34",
+    "@types/jest": "^25.2.1",
+    "@types/webpack-env": "^1.15.1",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-jest": "^25.5.1",
+    "babel-loader": "^8.0.6",
+    "cordova-paramedic": "^0.5.0",
+    "core-js": "^3.1.4",
+    "jest": "^25.5.2",
+    "quicktype": "^15.0.197",
+    "reflect-metadata": "^0.1.13",
+    "regenerator-runtime": "^0.13.2",
+    "source-map-loader": "^0.2.4",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.6.2",
+    "tslint": "^5.18.0",
+    "tslint-config-airbnb": "^5.11.1",
+    "ttypescript": "^1.5.7",
+    "typedoc": "^0.17.6",
+    "typedoc-plugin-nojekyll": "^1.0.1",
+    "typedoc-plugin-toc-group": "^0.0.5",
+    "typedoc-webpack-plugin": "^1.1.4",
+    "typescript": "^3.8.3",
+    "typescript-is": "^0.12.2",
+    "webpack": "^4.36.1",
+    "webpack-cli": "^3.3.6"
+  },
+  "homepage": "https://bandyer.github.io/Bandyer-Cordova-Plugin",
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android"
+  ],
+  "license": "LGPL-3.0-or-later",
+  "name": "@bandyer/cordova-plugin-bandyer",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Bandyer/Bandyer-Cordova-Plugin.git"
+  },
+  "scripts": {
+    "build": "npm run buildJs && npm run buildAndroid",
+    "buildAndroid": "npm run genAndroidSources && ./gradlew clean build && npm run copyBuildConfig",
+    "buildIos": "todo",
+    "buildJs": "npm run lint && npm run genSources && webpack --optimize-minimize",
+    "copyBuildConfig": "yes | cp src/android/build/generated/source/buildConfig/debug/com/bandyer/cordova/plugin/BuildConfig.java src/android/src/main/release/java/com/bandyer/cordova/plugin/BuildConfig.java",
+    "doc": "typedoc --out ./docs --mode file --target ES6 ./www/src/ --hideGenerator --exclude node_modules --ignoreCompilerErrors --name Bandyer-Plugin",
+    "genAndroidSources": "quicktype --src-lang typescript --framework just-types --package com.bandyer.cordova.plugin --src www/src/events/Events.ts -o src/android/src/main/java/com/bandyer/cordova/plugin/BandyerEvents.kt",
+    "genIosSources": "quicktype --src-lang typescript -l objc --src --class-prefix BCPBandyer --features all www/src/events/Events.ts -o src/ios/BCPBandyerEvents && sed -i '' '/^typedef/d' src/ios/BCPBandyerEvents.h",
+    "genSources": "npm run genAndroidSources && npm run genIosSources",
+    "lint": "tslint -t verbose 'www/src/**/*.ts'",
+    "major": "npm version major -m \"Updated to version %s\"",
+    "minor": "npm version minor -m \"Updated to version %s\"",
+    "openDoc": "open ./docs/index.html",
+    "patch": "npm version patch -m \"Updated to version %s\"",
+    "postversion": "git push && git push --tags",
+    "test": "jest ./test/www/Unit Tests",
+    "version": "npm run doc && python update_plugin_version.py && npm run build && git add . "
+  },
+  "version": "0.6.5"
+}

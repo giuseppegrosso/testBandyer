@@ -1,0 +1,22 @@
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation (deps.bandyerSDK) {
+        exclude group:"org.conscrypt", module: "conscrypt-android"
+    }
+    implementation deps.okHttp
+    implementation deps.room
+    kapt deps.room_compiler
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+}
+
+repositories {
+    mavenLocal()
+    google()
+    mavenCentral()
+}
+
+cdvCompileSdkVersion=30
+cdvBuildToolsVersion='30.0.2'
+cdvTargetSdkVersion = 30
